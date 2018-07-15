@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+<div class="panel panel-warning">
+  <div class="panel-heading">
+    <h3>Product Details</h3>
+  </div>
+  <div class="panel-body">
+    <p><strong>Category: </strong><%= @product.category.name %></p>
+
+    <p><strong>Brand: </strong><%= @product.brand %></p>
+
+    <p><strong>Name: </strong><%= @product.name %></p>
+
+    <p><strong>Price: </strong><%= number_to_currency @product.price %></p>
+
+    <p><strong>Quantity: </strong><%= @product.quantity %></p>
+
+    <p><strong>Description: </strong><%= simple_format(@product.description.html_safe) %></p>
+  </div>
+  <div class="panel-footer">
+    <p><%= link_to 'Edit', edit_product_path(@product), class: "btn btn-warning" %> <%= link_to 'Back', products_path, class: "btn btn-primary" %></p>
+  </div>
+</div>
+
