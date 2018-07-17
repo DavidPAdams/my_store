@@ -1,7 +1,7 @@
 <div class="row">
   <% @products.each do |product| %>
     <div class="col-md-4">
-      <div class="well center-it">
+      <div class="well text-center">
         <% if product.image.url.nil? == false %>
           <p><%= image_tag product.image.url, width:300 %></p>
         <% end %>
@@ -9,7 +9,7 @@
         <p><%= number_to_currency product.price %></p>
         <p>
           <a href='#' data-toggle="modal" data-target="#myModal_<%= product.id %>" class="btn btn-info">
-            <span class='glyphicon glyphicon-plus'></span>More Info
+            <span class='glyphicon glyphicon-plus'></span>Buy It
           </a>
         </p>
       </div>
@@ -32,7 +32,14 @@
             <p><%= simple_format(product.description.html_safe) %></p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <!-- Delete those "Save Changes" and "Close" buttons that were here -->
+            <p>
+            <%= form_tag add_to_cart_path do %>
+              <%= hidden_field_tag :product_id, product.id %>
+              <%= number_field_tag :quantity, nil, min: 1, placeholder: "How many?" %>
+              <%= submit_tag "Add to Cart", class: "btn btn-success" %>
+            <% end %>
+            </p>
           </div>
         </div>
       </div>

@@ -5,13 +5,17 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'figaro'
+gem 'certified' #for the PC users
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
 gem 'devise'
 gem 'carrierwave'
 gem 'cancancan'
-gem 'pry-rails'
+# gem 'pry-rails'
+gem 'hirb'
 gem 'better_errors'
 gem 'binding_of_caller'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

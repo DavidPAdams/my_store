@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
-  get 'cart/add_to_cart'
+  post 'add_to_cart' => 'cart#add_to_cart'
 
-  get 'cart/view_order'
+  get 'view_order' => 'cart#view_order'
 
-  get 'cart/checkout'
+  get 'checkout' => 'cart#checkout'
+
+  post 'delete_from_cart' => 'cart#delete_from_cart'
+
+  post 'order_complete' => 'cart#order_complete'
 
   devise_for :users
   
