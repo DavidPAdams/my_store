@@ -14,7 +14,28 @@
         </p>
       </div>
     </div>
+    <script>
+      (function () {
+        var 
+          elements = document.querySelectorAll(".well"),
+          heights = [];
 
+        /* Getting an array with the heights */
+        [].forEach.call(elements, function(each) {
+          heights[heights.length] = getComputedStyle(each, null).getPropertyValue("height");
+        });
+
+        /* Sorting the array to get the greatest value first */
+        heights.sort(function(a, b) {
+          return parseFloat(b) - parseFloat(a);
+        });
+
+        /* Applying the greatest height to each element */
+        [].forEach.call(elements, function(each) {
+          each.style.height = heights[0];
+        });
+      })();
+    </script>
 
     <!-- Modal -->
     <div class="modal fade" id="myModal_<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -36,7 +57,7 @@
             <p>
             <%= form_tag add_to_cart_path do %>
               <%= hidden_field_tag :product_id, product.id %>
-              <%= number_field_tag :quantity, nil, min: 1, placeholder: "How many?" %>
+              <%= number_field_tag :quantity, nil, min: 1, placeholder: 1 %>
               <%= submit_tag "Add to Cart", class: "btn btn-success" %>
             <% end %>
             </p>
@@ -46,23 +67,4 @@
     </div>
   <% end %>
 </div>
-<script>
-  var 
-    elements = document.querySelectorAll(".well"),
-    heights = [];
 
-  /* Getting an array with the heights */
-  [].forEach.call(elements, function(each) {
-    heights[heights.length] = getComputedStyle(each, null).getPropertyValue("height");
-  });
-
-  /* Sorting the array to get the greatest value first */
-  heights.sort(function(a, b) {
-    return parseFloat(b) - parseFloat(a);
-  });
-
-  /* Applying the greatest height to each element */
-  [].forEach.call(elements, function(each) {
-    each.style.height = heights[0];
-  });
-</script>

@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post 'order_complete' => 'cart#order_complete'
 
   devise_for :users
-  
+
   root 'storefront#all_products'
 
   get 'categorical' => 'storefront#by_category'

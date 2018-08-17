@@ -15,19 +15,18 @@ class ApplicationController < ActionController::Base
   end
 
   def categories
-  	@categories = Category.order(:name)
+    @categories = Category.order(:name)
   end
 
   def brands
-	  @brands = Product.pluck(:brand).sort.uniq
-	end
+    @brands = Product.pluck(:brand).sort.uniq
+  end
 
-	protected
-	def configure_permitted_parameters
-	  devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:email, :password, 
-	     :password_confirmation, :role) }
+  protected
 
-	  devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :password, 
-	     :password_confirmation, :current_password, :role) }
-	end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :role) }
+
+    devise_parameter_sanitizer.permit(:account_update) { |u| u.permit(:email, :password, :password_confirmation, :current_password, :role) }
+  end
 end
